@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.product{
+  margin: 1em;
+  padding: 1em;
+  border: #282c34 solid 1px;
+  border-radius: 5px;
+}
+
+.product span {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}

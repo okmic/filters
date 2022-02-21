@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useState } from 'react'
+import Data from './components/Data/Data'
+import ContainerFilters from './components/Filters/ContainerFilters'
+
+export type DataType = {
+  body: string
+  id: number
+  userId: number
+  title: string
+}
 
 function App() {
+
+  const [state, setState] = useState([] as Array<DataType>)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <div>
+          <Data state={state} setState={setState} />
+        </div>
+        <div>
+          <ContainerFilters />
+        </div>
+      </main>
     </div>
   );
 }
