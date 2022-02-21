@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Data from './components/Data/Data'
 import ContainerFilters from './components/Filters/ContainerFilters'
 
@@ -14,11 +14,17 @@ function App() {
 
   const [state, setState] = useState([] as Array<DataType>)
 
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts/')
+  .then(response => response.json())
+  .then(json => setState(json))
+  }, [])
+
   return (
     <div className="App">
       <main>
         <div>
-          <Data state={state} setState={setState} />
+          <Data state={state} />
         </div>
         <div>
           <ContainerFilters />
