@@ -1,20 +1,18 @@
 import React from 'react'
 import { memo } from "react";
-import { DataType } from "../../App"
 
 type PropsType = {
-    state: Array<DataType> 
+    id: number
+    title: string
+    body: string
+    price: number 
 }
 
-const DataItems: React.FC<PropsType> = ({state}) => {
-
-      return <div>
-        {state.map(item => <div key={item.id} className="product">
-        <span>{item.title}</span>
-        <p><i>{item.body}</i></p>
+const DataItems: React.FC<PropsType> = ({id, title, body, price}) =>  <div key={id} className="product">
+        <span>{title}</span>
+        <p><i>{body}</i></p>
+        <h5>{price}</h5>
         </div>
-        )}
-        </div>
-}
+        
 
 export default memo(DataItems)
