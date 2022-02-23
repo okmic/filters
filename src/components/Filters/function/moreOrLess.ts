@@ -8,8 +8,8 @@ export const moreOrLess = (
     const newState: Array<DataType> = JSON.parse(JSON.stringify(state))
 
     if (order === "less") {
-        setState(newState.sort((a, b) => a.prise - b.prise))
+        setState(newState.sort((a, b) => a.price - b.price))
     } else {
-        setState(newState.sort((a, b) => b.prise - a.prise))
+        setState(newState.sort((a, b) => b.price - a.price))
     }
   }
