@@ -14,6 +14,8 @@ export type DataType = {
 
 function App() {
 
+  const [initialStatus, setInitialStatus] = useState(true)
+
   const [state, setState] = useState([] as Array<DataType>)
 
   //Update State Controler
@@ -30,8 +32,19 @@ function App() {
   .then(json => setState(json.map((item: any) => ({
     ...item,
     price: Math.floor(Math.random() * 9999)    
-  }))))
+  }
+  ))))
   }, [removeFilters])
+
+  useEffect(() => {
+    const ping = setTimeout(() => {
+      if(state.length > 0) {
+        setInitialStatus(true)
+      }
+    }, 300)
+
+   return () => clearTimeout(ping)   
+  }, [initialStatus])
 
   // Creating Max and Min price data
   useEffect(() => {
@@ -47,16 +60,7 @@ function App() {
   return (
     <div className="App">
       <main>
-
-        <div>
-          {state.map(item => <Data  
-          key={item.id} 
-          id={item.id} 
-          body={item.body} 
-          title={item.title}
-          price={item.price!} /> )}
-        </div>
-        <div>
+      <div>
           <ContainerFilters 
           state={state} 
           setState={setState}
@@ -65,9 +69,22 @@ function App() {
           initialValue={initialValue}
           finalValue={finalValue}
           setInitialValue={setInitialValue}
-          setFinalValue={setFinalValue}    
+          setFinalValue={setFinalValue}  
+          setInitialStatus={setInitialStatus} 
           />
         </div>
+
+       {initialStatus 
+      ?  <div>
+          {state.map(item => <Data  
+          key={item.id} 
+          id={item.id} 
+          body={item.body} 
+          title={item.title}
+          price={item.price!} /> )}
+        </div>
+      : <h1>Loading</h1>   
+      } 
       </main>
     </div>
   );

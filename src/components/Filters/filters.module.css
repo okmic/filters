@@ -1,0 +1,13 @@
+.wrapperFilters{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.inputRange {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1em;
+}
