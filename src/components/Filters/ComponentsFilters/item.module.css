@@ -1,0 +1,10 @@
+.imputSwitchN {
+    max-width: 150px;
+    margin-right: 1em;
+}
+.inputRange {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1em;
+}

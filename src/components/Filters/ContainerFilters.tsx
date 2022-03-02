@@ -1,11 +1,13 @@
 import { memo, useEffect, useState } from "react"
-import Button from '@mui/material/Button';
 import { DataType } from "../../App";
 import { moreOrLess } from "./function/moreOrLess";
 import { removeState } from "./function/remove";
 import { rangeFilter } from "./function/rangeFilter";
 import { switchNumbersFilter } from "./function/switchNumbersFilter";
 import styles from './filters.module.css'
+import { ButtonMorLess } from "./ComponentsFilters/ButtonMorLess";
+import {SwitchNumbers} from './ComponentsFilters/SwitchNumbers'
+import { Range } from "./ComponentsFilters/Range";
 
 type PropsType = {
   state: Array<DataType>
@@ -17,7 +19,6 @@ type PropsType = {
   finalValue: number
   setFinalValue: (n: number) => void
   setInitialStatus: (status: boolean) => void
-
 }
 
 const ContainerFilters: React.FC<PropsType> = ({ state, setState, removeFilters, setRemoveFilters, initialValue, finalValue, setInitialValue, setFinalValue, setInitialStatus }) => {
@@ -41,44 +42,31 @@ const ContainerFilters: React.FC<PropsType> = ({ state, setState, removeFilters,
 
   return <div className={styles.wrapperFilters}>
 
+  <ButtonMorLess
+    mr={mr}
+    handleMoreLess={handleMoreLess}
+    />
 
-    {mr
-      ? <Button onClick={() => handleMoreLess()}>
-        &#9660; Less
-      </Button>
-      : <Button onClick={() => handleMoreLess()}>
-        &#9650; More
-      </Button>
-    }
+  <Range 
+    range={range}
+    setRange={setRange}
+  />
 
-    <div className={styles.inputRange}>
-      <input type="range"
-        onChange={(e) => setRange(Number(e.target.value))}
-        value={range} min="0" max="9999" />
-      <h5>{range}</h5>
-    </div>
-
-    <div>
-      <input type="number"
-        value={initialValue}
-        onChange={(e) => setInitialValue(Number(e.target.value))}
-      />
-      <input type="number"
-        value={finalValue}
-        onChange={(e) => setFinalValue(Number(e.target.value))}
-      />
-
-      <Button onClick={() => switchNumbersFilter(initialValue, finalValue, state, setState)}>
-        Подобрать
-      </Button>
-
-      <Button onClick={() => {
-        removeState(removeFilters, setRemoveFilters, setRange)
-        setInitialStatus(false)
-      }}>
-        &#10060;
-      </Button>
-    </div>
+  <SwitchNumbers
+    initialValue={initialValue}
+    finalValue={finalValue}
+    state={state}
+    setState={setState}
+    removeFilters={removeFilters}
+    removeState={removeState}
+    setFinalValue={setFinalValue}
+    setInitialStatus={setInitialStatus}
+    setInitialValue={setInitialValue}
+    setRange={setRange}
+    setRemoveFilters={setRemoveFilters}
+    switchNumbersFilter={switchNumbersFilter}
+  />
+    
   </div>
 }
 
