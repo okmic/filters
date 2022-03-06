@@ -3,6 +3,7 @@ export const removeState = (
     setRemoveFilters: (update: boolean)=> void,
     setRange: (range: number) => void
     )  => {
+        debugger
         setRange(0)
         setRemoveFilters(!removeFilters)
     }

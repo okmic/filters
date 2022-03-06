@@ -44,7 +44,7 @@ function App() {
     }, 300)
 
    return () => clearTimeout(ping)   
-  }, [initialStatus])
+  }, [state])
 
   // Creating Max and Min price data
   useEffect(() => {
@@ -56,7 +56,7 @@ function App() {
       } 
   }, [state])
 
-
+debugger
   return (
     <div className="App">
       <main>
